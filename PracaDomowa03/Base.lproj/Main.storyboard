@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BaZ-tF-sAY">
-                                <rect key="frame" x="0.0" y="162" width="375" height="293"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yFh-jK-PR9">
                                     <size key="itemSize" width="200" height="200"/>
@@ -29,7 +29,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCell" id="TBQ-c5-JJH" customClass="MyCell" customModule="PracaDomowa03" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="46.5" width="200" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -63,8 +63,8 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="BaZ-tF-sAY" secondAttribute="trailing" id="GUB-sr-AdK"/>
                             <constraint firstItem="BaZ-tF-sAY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cAS-YO-cKS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BaZ-tF-sAY" secondAttribute="bottom" constant="212" id="r0C-qM-uzB"/>
-                            <constraint firstItem="BaZ-tF-sAY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="142" id="uAC-gZ-lO1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BaZ-tF-sAY" secondAttribute="bottom" id="r0C-qM-uzB"/>
+                            <constraint firstItem="BaZ-tF-sAY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uAC-gZ-lO1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
