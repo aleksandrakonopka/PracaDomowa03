@@ -5,7 +5,7 @@
 //  Created by Aleksandra Konopka on 28/03/2019.
 //  Copyright © 2019 Aleksandra Konopka. All rights reserved.
 //
-
+var whichOne = 0
 import UIKit
 class MyLayout : UICollectionViewFlowLayout
 {
@@ -13,18 +13,18 @@ class MyLayout : UICollectionViewFlowLayout
     override func prepare() {
         
         scrollDirection = .horizontal
-        itemSize = CGSize(width: 220, height: 220)
-        minimumLineSpacing = 70
+        itemSize = CGSize(width: 240, height: 240)
+        minimumLineSpacing = 60
         
-        let moveBy = ((collectionView?.frame.width)!-220)/2
+        let moveBy = ((collectionView?.frame.width)!-240)/2
             self.sectionInset = UIEdgeInsets(top: 200, left: moveBy, bottom: 200, right: moveBy)
         }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var visibleRect = CGRect()
-        visibleRect.origin = self.collectionView!.contentOffset
-        visibleRect.size = self.collectionView!.bounds.size
-        guard let attr = super.layoutAttributesForElements(in: visibleRect)
+        var myRect = CGRect()
+        myRect.origin = self.collectionView!.contentOffset
+        myRect.size = self.collectionView!.bounds.size
+        guard let attr = super.layoutAttributesForElements(in: myRect)
         else
         {
             return nil
@@ -32,11 +32,18 @@ class MyLayout : UICollectionViewFlowLayout
         
         let copiedAttr = attr.map(){$0.copy() as! UICollectionViewLayoutAttributes
         }
-        if copiedAttr.count > 1
+        if copiedAttr.count > 2
         {
-        copiedAttr[1].transform =  CGAffineTransform(scaleX: 1.3, y: 1.3)
+        copiedAttr[whichOne].transform =  CGAffineTransform(scaleX: 1.3, y: 1.2)
         }
-        //attr?[1].transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        else if copiedAttr.count == 1
+        {
+          copiedAttr[1].transform =  CGAffineTransform(scaleX: 1.3, y: 1.2)
+        }
+        else
+        {
+          copiedAttr[0].transform =  CGAffineTransform(scaleX: 1.3, y: 1.2)
+        }
         
         return copiedAttr
     }

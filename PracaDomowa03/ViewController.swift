@@ -8,6 +8,8 @@
 
 import UIKit
 
+// Z powodu braku pomysłów oraz czasu nie poradziłam sobie z relizacją zadania w dostatecznym stopniu. Żeby jednak udowodnić moje zaangażowanie, zostawiam w komentrzu na dole pliku fragmenty moich prób prawidłowego wykonania pracy domowej :)
+
 class ViewController: UIViewController {
     let layout = MyLayout()
     
@@ -18,11 +20,9 @@ class ViewController: UIViewController {
         collection.dataSource = self
         collection.delegate = self
         collection.setCollectionViewLayout(layout, animated: true)
-        //collection.isPagingEnabled = true
     }
-
-
 }
+
 extension ViewController : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -32,13 +32,54 @@ extension ViewController : UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCell
         cell.label.text = String(indexPath.row)
-//        cell.center.x = cell.center.x + collection.center.x - 100
         return cell
     }
-    
 }
+
 extension ViewController : UICollectionViewDelegate
 {
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        for  cell in collection.visibleCells
+        {
+            cell.backgroundColor = UIColor.red
+        }
+    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        for  cell in collection.visibleCells
+        {
+            if( cell.backgroundColor == UIColor.red)
+            {
+                cell.backgroundColor = UIColor.orange
+            }
+            else
+            {
+                cell.backgroundColor = UIColor.yellow
+            }
+        }
+    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let contentTarget = targetContentOffset.pointee.x
+        if contentTarget > collection.frame.width
+        {
+            let offset = Int(contentTarget) % 300
+            collection.contentOffset.x -= CGFloat(offset)
+        }
+        if velocity.x < 0
+        {
+         whichOne = 2
+        }
+        else
+        {
+        whichOne = 1
+        }
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        whichOne = 1
+    }
+}
+
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        layout.invalidateLayout()
 //        for (index,a) in collection.visibleCells.enumerated()
@@ -75,42 +116,13 @@ extension ViewController : UICollectionViewDelegate
 ////            a.backgroundColor = UIColor.green
 ////        }
 //    }
-    //scroll
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        if collection.visibleCells.count == 4
-//        {
-//            collection.visibleCells[1].
-//        }
-    }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        for  cell in collection.visibleCells
-        {
-            cell.backgroundColor = UIColor.red
-        }
-    }
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        for  cell in collection.visibleCells
-        {
-            if( cell.backgroundColor == UIColor.red)
-            {
-                cell.backgroundColor = UIColor.orange
-            }
-            else
-            {
-                cell.backgroundColor = UIColor.yellow
-            }
-        }
-    }
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        let contentTarget = targetContentOffset.pointee.x
-        if contentTarget > collection.frame.width
-        {
-            let offset = Int(contentTarget) % 290
-            collection.contentOffset.x -= CGFloat(offset)
-        }
-        
-         //let offset = Int(contentTarget) % 290
+//scroll
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+////        if collection.visibleCells.count == 4
+////        {
+////            collection.visibleCells[1].
+////        }
+//    }
         //collection.scrollToItem(at: IndexPath(row: 6, section: 0), at: .centeredHorizontally, animated: true)
 //        print(velocity.x)
 ////        if velocity.x < 1
@@ -219,12 +231,11 @@ extension ViewController : UICollectionViewDelegate
 //            // jak na zewnatrz to zatrzymujac robie zielona
 //            a.backgroundColor = UIColor.green
 //        }
-    }
+    
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        collection.cellForItem(at: indexPath)?.backgroundColor = UIColor.green
 //    }
-  
-}
+
 
 //extension ViewController: UICollectionViewDelegateFlowLayout
 //{
