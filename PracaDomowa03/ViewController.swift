@@ -76,6 +76,31 @@ extension ViewController : UICollectionViewDelegate
 ////        }
 //    }
     //scroll
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        if collection.visibleCells.count == 4
+//        {
+//            collection.visibleCells[1].
+//        }
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        for  cell in collection.visibleCells
+        {
+            cell.backgroundColor = UIColor.red
+        }
+    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        for  cell in collection.visibleCells
+        {
+            if( cell.backgroundColor == UIColor.red)
+            {
+                cell.backgroundColor = UIColor.orange
+            }
+            else
+            {
+                cell.backgroundColor = UIColor.yellow
+            }
+        }
+    }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let contentTarget = targetContentOffset.pointee.x
@@ -84,8 +109,78 @@ extension ViewController : UICollectionViewDelegate
             let offset = Int(contentTarget) % 290
             collection.contentOffset.x -= CGFloat(offset)
         }
-         collection.scrollToItem(at: IndexPath(row: 6 , section: 0), at: .centeredHorizontally, animated: true)
         
+         //let offset = Int(contentTarget) % 290
+        //collection.scrollToItem(at: IndexPath(row: 6, section: 0), at: .centeredHorizontally, animated: true)
+//        print(velocity.x)
+////        if velocity.x < 1
+////        {
+////            collection.scrollToItem(at: IndexPath(row: 2, section: 0), at: .centeredHorizontally, animated: true)
+////        }
+//        if velocity.x < 1 && velocity.x > -1
+//        {
+//        var number = ""
+//        for (index,cell) in collection.visibleCells.enumerated()
+//        {
+//            number = (cell as! MyCell).label!.text ?? ""
+//            if collection.visibleCells.count == 3 && index == 1
+//                        {
+//                        collection.scrollToItem(at: IndexPath(row: Int(number)!, section: 0), at: .centeredHorizontally, animated: true)
+//
+//                            //print("1")
+//                        }
+//                        else if(collection.visibleCells.count == 3 && index == 2)
+//                        {
+//                              collection.scrollToItem(at: IndexPath(row: Int(number)!, section: 0), at: .centeredHorizontally, animated: true)
+//
+//                             //print("2")
+//                        }
+//                        else if(collection.visibleCells.count == 2 && index == 0)
+//                        {
+//                               collection.scrollToItem(at: IndexPath(row: Int(number)!, section: 0), at: .centeredHorizontally, animated: true)
+//
+//                            // print("3")
+//                        }
+//                        else
+//                        {
+////                            collection.cellForItem(at: IndexPath(row: Int(number)!, section: 0))?.backgroundColor = UIColor.yellow
+//
+//                           // print("4 number: \(number)")
+//                        }
+//            }
+//        }
+        
+//        var number = ""
+//        for (index,item) in collection.visibleCells.enumerated()
+//        {
+//            number = (item as! MyCell).label!.text ?? ""
+//            if collection.visibleCells.count == 3 && index == 1
+//            {
+//            collection.scrollToItem(at: IndexPath(row: Int(number)!, section: 0), at: .centeredHorizontally, animated: true)
+//            collection.cellForItem(at: IndexPath(row: Int(number)!, section: 0))?.backgroundColor = UIColor.green
+//                print("1")
+//            }
+//            else if(collection.visibleCells.count == 3 && index == 2)
+//            {
+//                  collection.scrollToItem(at: IndexPath(row: Int(number)!, section: 0), at: .centeredHorizontally, animated: true)
+//                collection.cellForItem(at: IndexPath(row: Int(number)!, section: 0))?.backgroundColor = UIColor.green
+//
+//                 print("2")
+//            }
+//            else if(collection.visibleCells.count == 2 && index == 0)
+//            {
+//                   collection.scrollToItem(at: IndexPath(row: Int(number)!, section: 0), at: .centeredHorizontally, animated: true)
+//                collection.cellForItem(at: IndexPath(row: Int(number)!, section: 0))?.backgroundColor = UIColor.green
+//
+//                 print("3")
+//            }
+//            else
+//            {
+//                collection.cellForItem(at: IndexPath(row: Int(number)!, section: 0))?.backgroundColor = UIColor.yellow
+//                //collection.visibleCells[index].backgroundColor =
+//                print("4 number: \(number)")
+//            }
+//        }
 //        if collection.visibleCells.count == 3
 //        {
 //             var a = (collection.visibleCells[1] as! MyCell).label?.text
